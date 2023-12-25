@@ -33,27 +33,12 @@
     </ul>
 
     <form action="index.php" method="post">
-      <label for="GIdentifier">GIdentifier:</label>
-      <input type="text" id="GIdentifier" name="GIdentifier" value="" /> <br />
-
-      <label for="GLocusTag">Locus_tag:</label>
-      <input type="text" id="GLocusTag" name="GLocusTag" value="" /><br />
-
-      <label for="GNote">Note:</label>
-      <textarea id="GNote" name="GNote" value=""> </textarea><br />
-
-      <label for="GProduct">Product:</label>
-      <input type="text" id="GProduct" name="GProduct" value="" />
-      <br />
-
-      <label for="ProteinId">Protein_id:</label>
-      <input type="text" id="ProteinId" name="ProteinId" value="" /> <br />
-      <br />
-
-      <label for="Translation">Translation:</label>
-      <textarea id="Translation" name="Translation" value=""> </textarea><br /><br />
-
-      <input type="submit" name="submit" id="submit" value="Update Gene" /><br /><br />
+      <fieldset>
+        <legend>Trasncription</legend>
+        <label for="seq">Enter sequence</label><br />
+        <input type="text" id="seq" name="seq" /><br />
+        <input type="submit" value="Transcripe" />
+      </fieldset>
     </form>
   </body>
 </html>

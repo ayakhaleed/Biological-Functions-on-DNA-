@@ -34,52 +34,30 @@
   </ul>
   <div class="results">
     <?php
-    include '../credentials.php';
-    // $servername = "localhost";
-    // $username = "debian-sys-maint";
-    // $password = "0hbwh4xDVCqpV94G";
-    // $dbname = "Variola";
-    // Create connection
-    $conn = new mysqli(
-      $servername,
-      $username,
-      $password,
-      $dbname
-    );
-    // Check connection
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    } else {
-      echo "Connected successfully<br> ";
-    }
-
-    if (isset($_POST['submit'])) {
-      $GIdentifier = $_POST['GIdentifier'];
-      $GLocusTag = $_POST['GLocusTag'];
-      $GNote = $_POST['GNote'];
-      $GProduct = $_POST['GProduct'];
-      $ProteinId = $_POST['ProteinId'];
-      $Translation = $_POST['Translation'];
-
-
-      if (!(empty($GLocusTag) && empty($GNote)
-        && empty($GProduct) && empty($ProteinId) && empty($Translation))) {
-        $sql = "UPDATE Gene SET locus_tag='$GLocusTag', note='$GNote',
-    product='$GProduct',protein_id='$ProteinId',translation='$Translation'
-     WHERE identifier ='$GIdentifier'";
-
-
-        if ($conn->query($sql) === TRUE) {
-          echo "New record from input form  Updated  succsessfully <br> ";
-        } else {
-          echo "Error: " . $sql . "<br>" . $conn->error;
+    function transcription()
+    {
+      $seq = $_POST["seq"];
+      $len = strlen($seq);
+      $comp = " ";
+      for ($i = 0; $i < $len; $i++) {
+        if ($seq[$i] == "A") {
+          $comp = $comp . "U";
+        }
+        if ($seq[$i] == "C") {
+          $comp = $comp . "G";
+        }
+        if ($seq[$i] == "G") {
+          $comp = $comp . "C";
+        }
+        if ($seq[$i] == "T") {
+          $comp = $comp . "A";
         }
       }
+      echo "$comp";
     }
-
+    transcription();
     ?>
   </div>
-
 </body>
 
 </html>
