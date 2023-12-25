@@ -32,32 +32,36 @@
       <h2>Variola Genes</h2>
     </li>
   </ul>
-  <div class="results">
+
+  <form action="" method="post">
+    <fieldset>
+      <legend>Complement</legend>
+      <label for="sequence">Enter sequence:</label></br>
+      <input type="text" name="sequence" id="sequence"></br>
+      <input type="submit" name="submit" value="Get Complement">
+    </fieldset>
     <?php
-    function transcription()
-    {
-      $seq = $_POST["seq"];
-      $len = strlen($seq);
-      $comp = " ";
-      for ($i = 0; $i < $len; $i++) {
-        if ($seq[$i] == "A") {
-          $comp = $comp . "U";
-        }
-        if ($seq[$i] == "C") {
-          $comp = $comp . "G";
-        }
-        if ($seq[$i] == "G") {
-          $comp = $comp . "C";
-        }
-        if ($seq[$i] == "T") {
-          $comp = $comp . "A";
-        }
+    // Check if form has been submitted
+    if (isset($_POST["submit"])) {
+
+      $sequence = $_POST['sequence'];
+      $sequence = strtoupper($sequence);
+
+
+      function get_complement($seq)
+      {
+        $complement = strtr($seq, 'ATCG', 'UAGC');
+        return $complement;
       }
-      echo "$comp";
+
+      $complement = get_complement($sequence);
+
+      echo "<p>Complement: $complement</p>";
     }
-    transcription();
     ?>
-  </div>
+  </form>
+
+
 </body>
 
 </html>
